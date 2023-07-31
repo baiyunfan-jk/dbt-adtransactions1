@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: glaucus
+  - name: glaucus_stgy_details
     schema: dp_data_db
     description: "存储glaucusRTA相关的所有底表数据"
     tables: 
