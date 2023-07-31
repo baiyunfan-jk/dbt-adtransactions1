@@ -1,3 +1,9 @@
+{{ config(materialized='view') }}
+with source as (
+
+    select * from {{ source('data_ai_glaucus_preagg', 'dm_eco_bm_rta_req_new_config_bckt') }} 
+
+),
 request as (
   select
   date_format(req.dt,'yyyyMMdd')as pday,
@@ -30,7 +36,7 @@ request as (
      ,sum(release_pv)release_pv
      ,sum(request_uv)request_uv
      ,sum(release_uv)release_uv
-     from fin_dm_data_ai.dm_eco_bm_rta_req_new_config_bckt
+     from source
      where media='腾讯' and dt>=date_sub(date('${pDate}') ,7)
      group by 1,2,3,4
      union all
@@ -46,3 +52,4 @@ request as (
      where media='腾讯' and dt>=date_sub(date('${pDate}') ,7)
      group by 1,2,3,4
   )req)
+select * from request
