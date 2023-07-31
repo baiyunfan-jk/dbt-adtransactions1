@@ -2,7 +2,7 @@ version: 2
 
 
 sources:
-  - name: data_ai_glaucus
+  - name: request
     description: "RTA分桶 + 账户组粒度请求"
     schema: fin_dm_data_ai
     tables: 
