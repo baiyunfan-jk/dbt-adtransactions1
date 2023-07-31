@@ -1,8 +1,0 @@
-version: 2
-
-sources:
-  - name: glaucus
-    schema: dp_data_db
-    description: "存储glaucusRTA相关的所有底表数据"
-    tables: 
-      - name: fin_dm_data_ai.prd_glaucus_p_gl_account_decision_conf_sync_pda
