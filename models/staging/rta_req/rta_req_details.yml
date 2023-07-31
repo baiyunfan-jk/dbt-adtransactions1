@@ -1,9 +1,0 @@
-version: 2
-
-
-sources:
-  - name: request
-    description: "RTA分桶 + 账户组粒度请求"
-    schema: fin_dm_data_ai
-    tables: 
-      - name: dm_eco_bm_rta_req_new_config_bckt
