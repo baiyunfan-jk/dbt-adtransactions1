@@ -1,8 +1,10 @@
 version: 2
 
 sources:
-  - name: glaucus_stgy_details
-    schema: dp_data_db
-    description: "策略中文名 排老黑2.0/PreA4.0低分高分差异化出价"
+  - name: data_ai_glaucus_preagg
+    schema: fin_dm_data_ai
+    description: "存储数据智能部的预聚合数据"
     tables: 
-      - name: fin_dm_data_ai.prd_glaucus_p_gl_account_decision_conf_sync_pda
+      - name: prd_glaucus_p_gl_account_decision_conf_sync_pda
+      - name: dm_eco_bm_rta_req_new_config_bckt
+      - name: dm_eco_bm_rta_bucket_cfgid_cost
