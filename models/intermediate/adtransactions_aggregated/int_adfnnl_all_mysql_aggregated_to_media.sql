@@ -20,3 +20,11 @@ incremental_table_data as (
   or (media ='百度开屏' and config_id in ('59','60'))--V7
   or (media in('快手' ,'百度') and config_id not in ('59','60'))--V7
 )
+  group by dt
+  ,media
+  ,config_id
+  ,config_id_name
+  ,strategys_name
+  ,dimension_1
+  ,dimension_2)
+select * from incremental_table_data
