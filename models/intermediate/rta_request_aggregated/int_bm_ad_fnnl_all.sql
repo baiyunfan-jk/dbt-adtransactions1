@@ -1,6 +1,7 @@
 {{ config(
   materialized = 'incremental',
   incremental_strategy = 'insert_overwrite',
+  partition_by = 'pday'
 )}}
 with spend as {{ref('rta_cost_media_bckt_accgroup_request')}},
   request as {{ref('rta_req_media_bckt_accgroup_request')}},
