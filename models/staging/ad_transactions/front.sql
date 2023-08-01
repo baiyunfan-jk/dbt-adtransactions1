@@ -27,7 +27,9 @@ with renamed as (
         , sum(imp_cpm_cost) as imp_cpm_cost
     from source
     where p_day >=date_format(date_sub(date('${pDate}') ,7),'yyyyMMdd')
+    group by 1,2,3,4,5,6
     )
+    group by 1,2,3,4
 
   )
 select * from renamed
