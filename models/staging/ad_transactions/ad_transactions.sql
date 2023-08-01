@@ -1,5 +1,10 @@
 {{ config(materialized='view') }}
-  
+
+with source as (
+
+    select * from {{ source('ad_transactions', 'dm_eco_dataeco_ad_transations_0_4_1') }} 
+
+),
 with renamed as (
     select p_day, p_resource_code, win_config_id, req_bucket,
         sum(imp_pv) as imp_pv,
@@ -20,7 +25,7 @@ with renamed as (
         , sum(imp_agg_ct) as imp_pv
         , sum(clk_agg_ct) as clk_pv
         , sum(imp_cpm_cost) as imp_cpm_cost
-    from fin_dm_data_ai.dm_eco_dataeco_ad_transations_0_4_1
+    from source
     where p_day >=date_format(date_sub(date('${pDate}') ,7),'yyyyMMdd')
     )
 
