@@ -1,7 +1,6 @@
 {{ config(
   materialized = 'incremental',
   incremental_strategy = 'insert_overwrite',
-  partition_by = 'p_day'
 )}}
 with source as {{ref('ad_fnnl_all')}},
 incremental_table_data as (
