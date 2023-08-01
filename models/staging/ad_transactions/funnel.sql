@@ -5,7 +5,7 @@ with source as (
     select * from {{ source('ad_transactions', 'dm_eco_bm_ad_fnnl_1_base') }} 
 
 ),
-ren
+
 funnel as (
 select
 a.p_day as pday
