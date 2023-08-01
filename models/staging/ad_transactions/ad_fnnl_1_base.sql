@@ -1,6 +1,6 @@
 {{ config(materialized='view') }}
 
-with source as (
+with a as (
 
     select * from {{ source('ad_transactions', 'dm_eco_bm_ad_fnnl_1_base') }} 
 
@@ -61,7 +61,7 @@ sum_t0_dz_amt_nonff,
  sum_wjt3_dz_amt,
  sum_wjt3_dz_amt_nonff,
     imp_cpm_cost
-from  source
+from  a
 where a.p_day >=date_format(date_sub(date('${pDate}') ,7),'yyyyMMdd')
 and a.p_resource_code in ('ks_rta','tt_rta','tencent_gdt_rta','tencent_wx_rta','baidu_rta','BAIDUKP_rta')--V7
 )
