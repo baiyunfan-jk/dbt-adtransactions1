@@ -28,7 +28,8 @@ renamed as (
          or sx_product_names is null
          or sx_product_names='NULL'
         then 1 else 0 end as if_jt
-     from source 
+    from source 
+    where p_day >=date_format(date_sub(date('${pDate}') ,7),'yyyyMMdd')
 )
 
 select * from renamed
