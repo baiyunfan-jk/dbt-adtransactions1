@@ -1,8 +1,8 @@
-{{ config(materialized='view') }}
+{{ config(materialized='ephemeral') }}
 
 with source as (
 
-    select * from {{ source('ad_transactions', 'dm_eco_dataeco_ad_transations_0_4_1') }} 
+    select * from {{ ref('ad_transaction_detail') }} 
 
 ),
 back as(
@@ -50,22 +50,13 @@ back as(
       , sum(IF(is_wj_dz_t3 and if_jt=1,wj_dz_t3_amt,0)) sum_wjt3_dz_amt
       , sum(case when is_wj_dz_t3='true' and has_fenfa='false' and if_jt=1 then wj_dz_t3_amt else 0 end) sum_wjt3_dz_amt_nonff
 
-    from(
-        select *,
-        case when sx_product_names like '%RJ%'
-         --or sx_product_names like '%_前端_%'
-         or sx_product_names like '%上海大额%'
-         or sx_product_names like '%上海小额%'
-         or sx_product_names like '%北京小额%'
-         or sx_product_names is null
-         or sx_product_names='NULL'
-        then 1 else 0 end as if_jt
-        ,row_number() over (partition by p_day, p_resource_code, win_config_id, req_bucket, ldp_userno order by rand(123)) ct
-        from source
-        where p_day >=date_format(date_sub(date('${pDate}') ,7),'yyyyMMdd')
-          and ldp_userno is not null
-        having ct = 1
-    ) a
+    from( 
+    select * ,
+    row_number() over (partition by p_day, p_resource_code, win_config_id, req_bucket, ldp_userno order by rand(123)) ct
+    from source
+    where ldp_userno is not null
+    having ct=1
     group by 1,2,3,4
+    )
 )
 select * from back
