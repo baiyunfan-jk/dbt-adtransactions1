@@ -63,4 +63,5 @@ select from_unixtime(unix_timestamp(pday,'yyyyMMdd'),'yyyy-MM-dd')dt
 ,sum(sum_wjt3_dz_amt) sum_wjt3_dz_amt
 ,sum(sum_wjt3_dz_amt_nonff) sum_wjt3_dz_amt_nonff
 ,sum(imp_cpm_cost) imp_cpm_cost
-from  source
+from  source)
+select * from renamed
