@@ -8,3 +8,4 @@ sources:
       - name: prd_glaucus_p_gl_account_decision_conf_sync_pda
       - name: dm_eco_bm_rta_req_new_config_bckt
       - name: dm_eco_bm_rta_bucket_cfgid_cost
+      - name: dm_eco_bm_ad_fnnl_1_base
