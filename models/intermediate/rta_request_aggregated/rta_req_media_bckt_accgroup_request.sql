@@ -47,5 +47,5 @@ request as (--RTA分桶 + 账户组粒度请求
    release_pv,
    request_uv,
    release_uv
-   from medias left join stgy on req.config_id = stgy.config_id and req.bucket=stgy.bucket and stgy.input_date=date_sub(req.dt,1))
+   from medias left join stgy on medias.config_id = stgy.config_id and medias.bucket=stgy.bucket and stgy.input_date=date_sub(medias.dt,1))
 select * from request
