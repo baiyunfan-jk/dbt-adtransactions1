@@ -65,3 +65,4 @@ from  a
 where a.p_day >=date_format(date_sub(date('${pDate}') ,7),'yyyyMMdd')
 and a.p_resource_code in ('ks_rta','tt_rta','tencent_gdt_rta','tencent_wx_rta','baidu_rta','BAIDUKP_rta')--V7
 )
+select * from funnel
